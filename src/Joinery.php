@@ -13,7 +13,7 @@ class Joinery
 
     public function join($cube, $path, $cols = [], $type = self::INNER)
     {
-        $alias = $this->aliasJoin($path);
+        $alias = $this->alias($path);
 
         if (! array_key_exists($alias, $this->joins)) {
             $this->joins[$alias] = $this->setup($cube, $path, $type);
@@ -51,7 +51,7 @@ class Joinery
         );
     }
 
-    protected function aliasJoin($path)
+    public function alias($path)
     {
         return str_replace('.', '_', last(explode(' as ', $path)));
     }

@@ -46,18 +46,17 @@ class Cube extends Aggregator
         return $this->joinTo($path, $cols, Joinery::LEFT);
     }
 
-    protected function joinColumn($path) //Refactor!
+    protected function joinColumn($path)
     {
+        if (! strpos($path, '.')) return $path;
+
         $segments = explode('.', $path);
 
         $col = array_pop($segments);
 
-        if (! $segments) return $col;
-
         $this->joinTo(implode('.', $segments), [$col]);
 
-        // Check for nested groupBy-alias
-        return last(explode(' as ', implode('_', $segments).'_'.$col));
+        return $this->joinery->alias($path);
     }
 
     public function groupBy(...$groups)
