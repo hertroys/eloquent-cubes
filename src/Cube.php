@@ -74,7 +74,7 @@ class Cube extends Aggregator
         return parent::where($this->joinColumn($path), $operator, $value, $boolean);
     }
 
-    public function whereNull($column, $boolean = 'and', $not = false)
+    public function whereNull($path, $boolean = 'and', $not = false)
     {
         return parent::whereNull($this->joinColumn($path), $boolean, $not);
     }
