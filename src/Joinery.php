@@ -58,10 +58,11 @@ class Joinery
 
     protected function aliasColumns($cols = [], $prefix)
     {
+        $aliased = [];
         foreach ($cols as $col) {
             $aliased[] = $this->aliasColumn($col, $prefix);
         }
-        return $aliased ?: [];
+        return $aliased;
     }
 
     protected function aliasColumn($col, $prefix)
