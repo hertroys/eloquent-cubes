@@ -52,9 +52,12 @@ class Cube extends Aggregator
 
         $col = array_pop($segments);
 
-        if ($segments) $this->joinTo(implode('.', $segments), [$col]);
+        if (! $segments) return $col;
 
-        return $segments ? implode('_', $segments).'_'.$col : $col;
+        $this->joinTo(implode('.', $segments), [$col]);
+
+        // Check for nested groupBy-alias
+        return end(explode(' as ', implode('_', $segments).'_'.$col));
     }
 
     public function groupBy(...$groups)
