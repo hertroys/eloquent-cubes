@@ -66,7 +66,17 @@ The method names can be chained to form a *relation path* from some model to ano
 Eloquent cubes use these relation paths to perform joins: `$salesCube->joinTo('product.subgroup.group')->toSql();`
 
 ```
-select * from `order_lines` inner join (select `products`.`id` as `product_subgroup_group_joinkey` from `products` inner join `product_subgroups` on `products`.`subgroup_id` = `product_subgroups`.`id` inner join `product_groups` on `product_subgroups`.`group_id` = `product_groups`.`id`) as `product_subgroup_group` on `order_lines`.`product_id` = `product_subgroup_group`.`product_subgroup_group_joinkey`
+select * from
+    `order_lines`
+    inner join (
+        select `products`.`id` as `product_subgroup_group_joinkey` from
+            `products`
+            inner join `product_subgroups` on
+                `products`.`subgroup_id` = `product_subgroups`.`id`
+            inner join `product_groups` on
+                `product_subgroups`.`group_id` = `product_groups`.`id`
+    ) as `product_subgroup_group` on
+        `order_lines`.`product_id` = `product_subgroup_group`.`product_subgroup_group_joinkey`
 ```
 
 Of course, you can left join with `$cube->leftJoinTo('some.join.path')`
