@@ -57,7 +57,7 @@ class Cube extends Aggregator
         $this->joinTo(implode('.', $segments), [$col]);
 
         // Check for nested groupBy-alias
-        return end(explode(' as ', implode('_', $segments).'_'.$col));
+        return last(explode(' as ', implode('_', $segments).'_'.$col));
     }
 
     public function groupBy(...$groups)
