@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cube extends Aggregator
 {
-    protected $model;
+    public $model;
 
-    protected $joinery;
+    public $joinery;
 
     public function __construct(Model $model)
     {
@@ -91,15 +91,5 @@ class Cube extends Aggregator
     public function orderBy($path, $direction = 'asc')
     {
         return parent::orderBy($this->joinColumn($path), $direction);
-    }
-
-    public function getModel()
-    {
-        return $this->model;
-    }
-
-    public function getJoinery()
-    {
-        return $this->joinery;
     }
 }
