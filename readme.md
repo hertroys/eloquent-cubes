@@ -62,7 +62,7 @@ class OrderLine extends Model
 The method names can be chained to form a *relation path* from some model to another which can be used, i.a., to eager load:
 `\App\OrderLine::get()->load('product.subgroup.group');`
 
-Provided that the `subgroup` and `group` relations are defined, this yields:
+This yields (provided that the `subgroup` and `group` relations are defined):
 ```
 1. select * from `order_lines`
 2. select * from `products` where `products`.`id` in ('1', '2', '3', '4', '5', '6')
