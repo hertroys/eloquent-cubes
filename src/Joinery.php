@@ -32,7 +32,7 @@ class Joinery
     protected function setup($cube, $path, $type)
     {
         $steps = explode('.', head(explode(' as ', $path)));
-        $glue = $cube->getModel()->{array_shift($steps)}();
+        $glue = $cube->model->{array_shift($steps)}();
 
         $join = new JoinPath($glue->getRelated(), $steps, $type);
         $join->glue = $glue;
