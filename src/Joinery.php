@@ -25,10 +25,8 @@ class Joinery
 
     public function compile($cube)
     {
-        foreach ($this->joins as $alias => $join) {
-            if (! in_array($alias, $this->compiled)) {
-                $this->compileJoin($cube, $join, $alias);
-            }
+        foreach (array_except($this->joins, $this->compiled) as $alias => $join) {
+            $this->compileJoin($cube, $join, $alias);
         }
     }
 
