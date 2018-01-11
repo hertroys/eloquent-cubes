@@ -5,6 +5,7 @@ namespace Hertroys\Cubes;
 class Joinery
 {
     public $joins = [];
+    public $compiled = [];
 
     const INNER = 'join';
     const LEFT  = 'leftJoin';
@@ -25,7 +26,9 @@ class Joinery
     public function compile($cube)
     {
         foreach ($this->joins as $alias => $join) {
-            $this->compileJoin($cube, $join, $alias);
+            if (! in_array($alias, $this->compiled)) {
+                $this->compileJoin($cube, $join, $alias);
+            }
         }
     }
 
@@ -49,6 +52,8 @@ class Joinery
             app('db')->raw("({$join->query->toSql()}) as {$cube->wrap($alias)}"),
             $join->glue->getQualifiedForeignKey(), '=', "$alias.{$alias}_joinkey"
         );
+
+        $this->compiled[] = $alias;
     }
 
     public function alias($path)
