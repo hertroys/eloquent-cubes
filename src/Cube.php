@@ -92,4 +92,9 @@ class Cube extends Aggregator
     {
         return parent::orderBy($this->joinColumn($path), $direction);
     }
+
+    public function getModel()
+    {
+        return $this->model;
+    }
 }
