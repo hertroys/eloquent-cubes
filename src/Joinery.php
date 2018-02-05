@@ -47,7 +47,7 @@ class Joinery
         );
 
         $cube->query->{$join->type}(
-            app('db')->raw("({$join->query->toSql()}) as {$cube->wrap($alias)}"),
+            $cube->raw("({$join->query->toSql()}) as {$cube->wrap($alias)}"),
             $join->glue->getQualifiedForeignKey(), '=', "$alias.{$alias}_joinkey"
         );
 

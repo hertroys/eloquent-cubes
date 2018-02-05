@@ -13,11 +13,18 @@ class Cube extends Aggregator
 
     public function __construct(Model $model)
     {
+        $this->joinery = new Joinery;
+
         $this->model = $model;
 
-        $this->table($model->getTable());
+        parent::__construct($model->getConnection());
 
-        $this->joinery = new Joinery;
+        $this->table($model->getTable());
+    }
+
+    public function getModel()
+    {
+        return $this->model;
     }
 
     public function get()
@@ -32,6 +39,13 @@ class Cube extends Aggregator
         $this->joinery->compile($this);
 
         return parent::toSql();
+    }
+
+    public function getBindings()
+    {
+        $this->joinery->compile($this);
+
+        return parent::getBindings();
     }
 
     public function joinTo($path, $cols = [], $type = Joinery::INNER)
@@ -91,10 +105,5 @@ class Cube extends Aggregator
     public function orderBy($path, $direction = 'asc')
     {
         return parent::orderBy($this->joinColumn($path), $direction);
-    }
-
-    public function getModel()
-    {
-        return $this->model;
     }
 }
