@@ -1,20 +1,28 @@
 {
-    "name": "hertroys/eloquent-cubes",
-    "description": "Laravel 5 Eloquent cubes",
-    "keywords": ["laravel", "rolap", "cubes", "metrics", "dimensions"],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Abram Hertroys",
-            "email": "hertroys@gmail.com"
-        }
-    ],
-    "require": {
-        "hertroys/laravel-aggregate-builder": "dev-master"
-    },
-    "autoload": {
-        "psr-4": {
-            "Hertroys\\Cubes\\": "src/"
-        }
+  "name": "hertroys/eloquent-cubes",
+  "description": "Laravel 5 Eloquent cubes",
+  "keywords": ["laravel", "rolap", "cubes", "metrics", "dimensions"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Abram Hertroys",
+      "email": "hertroys@gmail.com"
     }
+  ],
+  "require": {
+    "hertroys/laravel-aggregate-builder": "dev-master"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:hertroys/laravel-aggregate-builder.git"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Hertroys\\Cubes\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
