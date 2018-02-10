@@ -103,7 +103,7 @@ The cube watches for "dot" notation in the column selectors of the various query
 So `->joinTo('product.subgroup', ['group_id'])->groupBy('product_subgroup_group_id')` can be abbreviated as
 `->groupBy('product.subgroup.group_id')`
 
-Dot detection is enabled for `where` (`whereIn`, `whereBetween`, `whereNull`) and `orderBy`
+Dot detection is enabled for `where` (`whereIn`, `whereBetween`, `whereNull`), `groupBy` and `orderBy`
 
 As with the [laravel-aggregate-builder](https://github.com/hertroys/laravel-aggregate-builder), the grouping columns are automatically added to the select and aggregate functions may be chained.
 
